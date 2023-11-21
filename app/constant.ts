@@ -88,69 +88,86 @@ Latex inline: $x^2$
 Latex block: $$e=mc^2$$
 `;
 
-export const SUMMARIZE_MODEL = "gpt-3.5-turbo";
+export const AVAILABLE_MODELS = {
+  GPT_4: "gpt-4",
+  GPT_4_0314: "gpt-4-0314",
+  GPT_4_0613: "gpt-4-0613",
+  GPT_4_32K: "gpt-4-32k",
+  GPT_4_32K_0314: "gpt-4-32k-0314",
+  GPT_4_32K_0613: "gpt-4-32k-0613",
+  GPT_4_1106_PREVIEW: "gpt-4-1106-preview",
+  GPT_4_VISION_PREVIEW: "gpt-4-vision-preview",
+  GPT_3_5_TURBO: "gpt-3.5-turbo",
+  GPT_3_5_TURBO_0301: "gpt-3.5-turbo-0301",
+  GPT_3_5_TURBO_0613: "gpt-3.5-turbo-0613",
+  GPT_3_5_TURBO_1106: "gpt-3.5-turbo-1106",
+  GPT_3_5_TURBO_16K: "gpt-3.5-turbo-16k",
+  GPT_3_5_TURBO_16K_0613: "gpt-3.5-turbo-16k-0613",
+};
+
+export const SUMMARIZE_MODEL = AVAILABLE_MODELS.GPT_4_1106_PREVIEW;
 
 export const KnowledgeCutOffDate: Record<string, string> = {
   default: "2021-09",
-  "gpt-4-1106-preview": "2023-04",
-  "gpt-4-vision-preview": "2023-04",
+  [AVAILABLE_MODELS.GPT_4_1106_PREVIEW]: "2023-04",
+  [AVAILABLE_MODELS.GPT_4_VISION_PREVIEW]: "2023-04",
 };
 
 export const DEFAULT_MODELS = [
   {
-    name: "gpt-4",
+    name: AVAILABLE_MODELS.GPT_4,
     available: true,
   },
   {
-    name: "gpt-4-0314",
+    name: AVAILABLE_MODELS.GPT_4_0314,
     available: true,
   },
   {
-    name: "gpt-4-0613",
+    name: AVAILABLE_MODELS.GPT_3_5_TURBO_0613,
     available: true,
   },
   {
-    name: "gpt-4-32k",
+    name: AVAILABLE_MODELS.GPT_4_32K,
     available: true,
   },
   {
-    name: "gpt-4-32k-0314",
+    name: AVAILABLE_MODELS.GPT_4_32K_0314,
     available: true,
   },
   {
-    name: "gpt-4-32k-0613",
+    name: AVAILABLE_MODELS.GPT_4_32K_0613,
     available: true,
   },
   {
-    name: "gpt-4-1106-preview",
+    name: AVAILABLE_MODELS.GPT_4_1106_PREVIEW,
     available: true,
   },
   {
-    name: "gpt-4-vision-preview",
+    name: AVAILABLE_MODELS.GPT_4_VISION_PREVIEW,
     available: true,
   },
   {
-    name: "gpt-3.5-turbo",
+    name: AVAILABLE_MODELS.GPT_3_5_TURBO,
     available: true,
   },
   {
-    name: "gpt-3.5-turbo-0301",
+    name: AVAILABLE_MODELS.GPT_3_5_TURBO_0301,
     available: true,
   },
   {
-    name: "gpt-3.5-turbo-0613",
+    name: AVAILABLE_MODELS.GPT_3_5_TURBO_0613,
     available: true,
   },
   {
-    name: "gpt-3.5-turbo-1106",
+    name: AVAILABLE_MODELS.GPT_3_5_TURBO_1106,
     available: true,
   },
   {
-    name: "gpt-3.5-turbo-16k",
+    name: AVAILABLE_MODELS.GPT_3_5_TURBO_16K,
     available: true,
   },
   {
-    name: "gpt-3.5-turbo-16k-0613",
+    name: AVAILABLE_MODELS.GPT_3_5_TURBO_16K_0613,
     available: true,
   },
 ] as const;

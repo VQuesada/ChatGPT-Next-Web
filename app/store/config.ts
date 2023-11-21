@@ -2,6 +2,7 @@ import { LLMModel } from "../client/api";
 import { isMacOS } from "../utils";
 import { getClientConfig } from "../config/client";
 import {
+  AVAILABLE_MODELS,
   DEFAULT_INPUT_TEMPLATE,
   DEFAULT_MODELS,
   DEFAULT_SIDEBAR_WIDTH,
@@ -46,7 +47,7 @@ export const DEFAULT_CONFIG = {
   models: DEFAULT_MODELS as any as LLMModel[],
 
   modelConfig: {
-    model: "gpt-3.5-turbo" as ModelType,
+    model: AVAILABLE_MODELS.GPT_4_1106_PREVIEW as ModelType,
     temperature: 0.5,
     top_p: 1,
     max_tokens: 4000,
