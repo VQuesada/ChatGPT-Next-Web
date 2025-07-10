@@ -67,7 +67,7 @@ export class XAIApi implements LLMApi {
       messages.push({ role: v.role, content });
     }
 
-    const modelConfig = {
+    let modelConfig: any = {
       ...useAppConfig.getState().modelConfig,
       ...useChatStore.getState().currentSession().mask.modelConfig,
       ...{
@@ -75,6 +75,13 @@ export class XAIApi implements LLMApi {
         providerName: options.config.providerName,
       },
     };
+
+    if (modelConfig.model.includes("grok-4")) {
+      modelConfig = {
+        ...modelConfig,
+        presence_penalty: undefined,
+      };
+    }
 
     const requestPayload: RequestPayload = {
       messages,
