@@ -112,27 +112,29 @@ export function ModelConfigList(props: {
 
       {props.modelConfig?.providerName == ServiceProvider.Google ? null : (
         <>
-          <ListItem
-            title={Locale.Settings.PresencePenalty.Title}
-            subTitle={Locale.Settings.PresencePenalty.SubTitle}
-          >
-            <InputRange
-              aria={Locale.Settings.PresencePenalty.Title}
-              value={props.modelConfig.presence_penalty?.toFixed(1)}
-              min="-2"
-              max="2"
-              step="0.1"
-              onChange={(e) => {
-                props.updateConfig(
-                  (config) =>
-                    (config.presence_penalty =
-                      ModalConfigValidator.presence_penalty(
-                        e.currentTarget.valueAsNumber,
-                      )),
-                );
-              }}
-            ></InputRange>
-          </ListItem>
+          {props.modelConfig.model.startsWith("grok-4") ? null : (
+            <ListItem
+              title={Locale.Settings.PresencePenalty.Title}
+              subTitle={Locale.Settings.PresencePenalty.SubTitle}
+            >
+              <InputRange
+                aria={Locale.Settings.PresencePenalty.Title}
+                value={props.modelConfig.presence_penalty?.toFixed(1)}
+                min="-2"
+                max="2"
+                step="0.1"
+                onChange={(e) => {
+                  props.updateConfig(
+                    (config) =>
+                      (config.presence_penalty =
+                        ModalConfigValidator.presence_penalty(
+                          e.currentTarget.valueAsNumber,
+                        )),
+                  );
+                }}
+              ></InputRange>
+            </ListItem>
+          )}
 
           <ListItem
             title={Locale.Settings.FrequencyPenalty.Title}
