@@ -76,19 +76,19 @@ export class XAIApi implements LLMApi {
       },
     };
 
-    if (modelConfig.model.includes("grok-4")) {
-      modelConfig = {
-        ...modelConfig,
-        presence_penalty: undefined,
-      };
+    const isGrok4 = modelConfig.model.startsWith("grok-4");
+
+    interface RequestPayloadGrok
+      extends Omit<RequestPayload, "presence_penalty"> {
+      presence_penalty?: number;
     }
 
-    const requestPayload: RequestPayload = {
+    const requestPayload: RequestPayloadGrok = {
       messages,
       stream: options.config.stream,
       model: modelConfig.model,
       temperature: modelConfig.temperature,
-      presence_penalty: modelConfig.presence_penalty,
+      ...(isGrok4 ? {} : { presence_penalty: modelConfig.presence_penalty }),
       frequency_penalty: modelConfig.frequency_penalty,
       top_p: modelConfig.top_p,
     };
