@@ -79,8 +79,9 @@ export class XAIApi implements LLMApi {
     const isGrok4 = modelConfig.model.startsWith("grok-4");
 
     interface RequestPayloadGrok
-      extends Omit<RequestPayload, "presence_penalty"> {
+      extends Omit<RequestPayload, "presence_penalty" | "frequency_penalty"> {
       presence_penalty?: number;
+      frequency_penalty?: number;
     }
 
     const requestPayload: RequestPayloadGrok = {
@@ -89,7 +90,7 @@ export class XAIApi implements LLMApi {
       model: modelConfig.model,
       temperature: modelConfig.temperature,
       ...(isGrok4 ? {} : { presence_penalty: modelConfig.presence_penalty }),
-      frequency_penalty: modelConfig.frequency_penalty,
+      ...(isGrok4 ? {} : { frequency_penalty: modelConfig.frequency_penalty }),
       top_p: modelConfig.top_p,
     };
 
