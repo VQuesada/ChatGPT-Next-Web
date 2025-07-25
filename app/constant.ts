@@ -25,7 +25,7 @@ export const ALIBABA_BASE_URL = "https://dashscope.aliyuncs.com/api/";
 
 export const TENCENT_BASE_URL = "https://hunyuan.tencentcloudapi.com";
 
-export const MOONSHOT_BASE_URL = "https://api.moonshot.cn";
+export const MOONSHOT_BASE_URL = "https://api.moonshot.ai";
 export const IFLYTEK_BASE_URL = "https://spark-api-open.xf-yun.com";
 
 export const DEEPSEEK_BASE_URL = "https://api.deepseek.com";
@@ -479,19 +479,20 @@ export const VISION_MODEL_REGEXES = [
   /vision/,
   /gpt-4o/,
   /gpt-4\.1/,
-  /claude-3/,
+  /claude.*[34]/,
   /gemini-1\.5/,
   /gemini-exp/,
-  /gemini-2\.0/,
+  /gemini-2\.[05]/,
   /learnlm/,
   /qwen-vl/,
   /qwen2-vl/,
-  /gpt-4-turbo(?!.*preview)/, // Matches "gpt-4-turbo" but not "gpt-4-turbo-preview"
-  /^dall-e-3$/, // Matches exactly "dall-e-3"
+  /gpt-4-turbo(?!.*preview)/,
+  /^dall-e-3$/,
   /glm-4v/,
   /vl/i,
   /o3/,
   /o4-mini/,
+  /grok-4/i,
 ];
 
 export const EXCLUDE_VISION_MODEL_REGEXES = [/claude-3-5-haiku-20241022/];
@@ -554,6 +555,7 @@ const googleModels = [
   "gemini-2.0-pro-exp",
   "gemini-2.0-pro-exp-02-05",
   "gemini-2.5-pro-preview-06-05",
+  "gemini-2.5-pro",
 ];
 
 const anthropicModels = [
@@ -621,10 +623,17 @@ const tencentModels: string[] = [
   // "hunyuan-vision",
 ];
 
-const moonshotModes: string[] = [
-  "moonshot-v1-8k",
-  "moonshot-v1-32k",
-  "moonshot-v1-128k",
+const moonshotModels: string[] = [
+  // "moonshot-v1-auto",
+  // "moonshot-v1-8k",
+  // "moonshot-v1-32k",
+  // "moonshot-v1-128k",
+  // "moonshot-v1-8k-vision-preview",
+  // "moonshot-v1-32k-vision-preview",
+  // "moonshot-v1-128k-vision-preview",
+  // "kimi-thinking-preview",
+  // "kimi-k2-0711-preview",
+  // "kimi-latest",
 ];
 
 const iflytekModels: string[] = [
@@ -818,7 +827,7 @@ export const DEFAULT_MODELS = [
       sorted: 8,
     },
   })),
-  ...moonshotModes.map((name) => ({
+  ...moonshotModels.map((name) => ({
     name,
     available: true,
     sorted: seq++,
